@@ -22,7 +22,14 @@ public:
   // 메시지를 전송한다
   void send(std::string message)
   {
-    std::cout << "MessageService: received " << message << std::endl;
+    Packet* newPacket = new Packet(host_->address(), destAddress_, port_, destPort_, message);
+    host_->send(newPacket);
+  }
+
+  void doService(Packet* packet)
+  {
+    std::cout << "MessageService: received" << packet->dataString() <<\
+    "from " << packet->srcPort() << ":" << packet->destPort() << std::endl;
   }
 };
 

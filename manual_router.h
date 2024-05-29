@@ -3,6 +3,7 @@
 
 #include "address.h"
 #include "router.h"
+#include <iostream>
 
 class ManualRouter : public Router {
 
@@ -12,6 +13,15 @@ public:
   {
     RoutingEntry* entry = new RoutingEntry(destination, nextLink);
     routingTable_.push_back(*entry);
+  }
+
+  void received(Packet* packet, Node* node)
+  {
+    std::cout << "Router #" << this->id() << ": forwarding packet (from: "\
+    << packet->srcAddress().toString() << ", to: " << packet->destAddress().toString()\
+    << ", " << packet->dataString().length() << " bytes" << std::endl;
+    Link* linked = routingTable_[this->id()].nextLink;
+    linked->linker(packet, linked->b());
   }
 };
 

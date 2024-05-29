@@ -10,7 +10,6 @@ protected:
   // 호스트와 서비스 서로간의 포인터를 저장한다.
   void install(Host *host, Service *service)
   {
-    Service:host_ = host;
     host->setService(service);
   }
 };

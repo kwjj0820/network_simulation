@@ -10,8 +10,16 @@
 class EchoService : public Service {
   friend class EchoServiceInstaller;
 
-private:
-  EchoService(Host *host, short port) : Service(host, port) {}
+  public:
+    void doService(Packet* packet)
+    {
+      std::cout << "EchoService: received " << packet->dataString() << "from "\
+      << packet->srcPort() << ":" << packet->destPort() <<\
+      "send reply with same data" << std::endl;
+    }
+
+  private:
+    EchoService(Host *host, short port) : Service(host, port) {}
 };
 
 #endif

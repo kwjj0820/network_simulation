@@ -5,6 +5,7 @@
 #include "packet.h"
 #include "service.h"
 #include <vector>
+#include <iostream>
 
 class Host : public Node {
   friend class ServiceInstaller;
@@ -32,7 +33,25 @@ public:
   }
 
   // 링크를 랜덤으로 하나 선택하여 패킷을 전송한다.
-  void send(Packet *packet);
+  void send(Packet *packet)
+  {
+    int randomIndex = rand() % links.size();
+    Link* seleted = links[randomIndex];
+    std::cout << "Host #" << this->id() << "sending packet (from: " << packet->srcAddress().toString()\
+    << ", to " << packet->destAddress().toString() << ", " << packet->dataString().length() << " bytes" << std::endl;
+    seleted->linker(packet, seleted->b());
+  }
+
+  void received(Packet *packet, Node *node)
+  {
+    std::cout << "Host #" << this->id() << " received packet, "\
+    << "destination port: " << packet->destPort();
+    int size = services_.size();
+    for(int i = 0; i < size; i++)
+    {
+      services_[i]->doService(packet);
+    }
+  }
 };
 
 #endif

@@ -84,6 +84,7 @@ int main() {
   // 정리 //
   // --- //
 
+/*
   // 생성한 객체를 제거한다.
   for (size_t i = 0; i < links.size(); i++) {
     delete links[i];
@@ -95,4 +96,5 @@ int main() {
 
   delete echoServer;
   delete messageClient;
+  */
 }

@@ -3,11 +3,23 @@
 
 #include "packet.h"
 #include <cstdlib>
+#include <iostream>
 
 class Node;
 
 class Link {
   friend class LinkInstaller;
+
+public:
+  Node* a() const { return nodeA_;}
+  Node* b() const { return nodeB_;}
+  void linker(Packet* packet, Node* node)
+  {
+    Node* linkedNode = other(node); 
+    std::cout << "Link: forwarding packet from node #" <<\
+    node->id() << ", to node #" << linkedNode->id();
+    linkedNode->received(packet, linkedNode);
+  }
 
 private:
   Link(Node *nodeA, Node *nodeB) : nodeA_(nodeA), nodeB_(nodeB) {}

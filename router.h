@@ -13,8 +13,8 @@ public:
 };
 
 class Router : public Node {
-protected:
-  std::vector<RoutingEntry> routingTable_;
+  protected:
+    std::vector<RoutingEntry> routingTable_;
 };
 
 #endif
