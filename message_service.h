@@ -28,8 +28,8 @@ public:
 
   void doService(Packet* packet)
   {
-    std::cout << "MessageService: received" << packet->dataString() <<\
-    "from " << packet->srcPort() << ":" << packet->destPort() << std::endl;
+    std::cout << "MessageService: received \"" << packet->dataString() <<\
+    "\" from " << packet->srcAddress().toString() << ":" << packet->srcPort() << std::endl;
   }
 };
 

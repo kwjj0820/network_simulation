@@ -74,6 +74,7 @@ int main() {
     }
   }
 
+/*
   for (int i = 0; i < COUNT; i++) {
     delete servers[i];
     delete clients[i];
@@ -85,4 +86,5 @@ int main() {
     delete serverLinks[i];
     delete clientLinks[i];
   }
+  */
 }
