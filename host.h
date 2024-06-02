@@ -6,10 +6,9 @@
 #include "service.h"
 #include <vector>
 #include <iostream>
-#include <algorithm>
 
 class Host : public Node {
-  friend class ServiceInstaller;
+  friend class ServiceInstaller;      
 
 private:
   // 호스트의 주소
@@ -18,17 +17,19 @@ private:
   // 설치된 서비스 목록
   std::vector<Service *> services_;
 
+  static short port_;
+
+  short hostPort;
+
   void setService(Service *service)
   {
-    // 이미 해당 서비스가 추가되었는지 확인
-    if (std::find(services_.begin(), services_.end(), service) == services_.end()) {
       services_.push_back(service);
-    }
   }
 
 public:
   Address address() { return address_; }
-  Host(Address address) : address_(address){}
+  Host(Address address) : address_(address), hostPort(port_++){}
+  short getPort() {return port_;}
 
   ~Host()
   {
@@ -69,4 +70,5 @@ public:
   }
 };
 
+short Host::port_ = 1000;
 #endif

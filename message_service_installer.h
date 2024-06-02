@@ -1,5 +1,5 @@
-#ifndef PING_SERVICE_INSTALLER_H
-#define PING_SERVICE_INSTALLER_H
+#ifndef MESSAGE_SERVICE_INSTALLER_H
+#define MESSAGE_SERVICE_INSTALLER_H
 
 #include "address.h"
 #include "message_service.h"
@@ -19,10 +19,12 @@ public:
   // 호스트에 MessageService를 설치한다
   MessageService *install(Host *host)
   {
-    MessageService* newMessage = new MessageService(host, srcPort_++, destAddress_, destPort_);
+    MessageService* newMessage = new MessageService(host, host->getPort(), destAddress_, destPort_);
     ServiceInstaller::install(host, newMessage);
     return newMessage;
   }
 };
+
+// 정적 멤버 변수 초기화
 
 #endif
