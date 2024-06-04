@@ -17,7 +17,13 @@ private:
   // 설치된 서비스 목록
   std::vector<Service *> services_;
 
+<<<<<<< HEAD
   short port_;
+=======
+  static short port_;
+
+  short hostPort;
+>>>>>>> c5ef0a0e49537eeefef944047b395bafabbe43c7
 
   void setService(Service *service)
   {
@@ -26,11 +32,20 @@ private:
 
 public:
   Address address() { return address_; }
+<<<<<<< HEAD
   Host(Address address) : address_(address), port_(1000){}
 
   ~Host()
   {
 
+=======
+  Host(Address address) : address_(address), hostPort(port_++){}
+  short getPort() {return port_;}
+
+  ~Host()
+  {
+    services_.clear();
+>>>>>>> c5ef0a0e49537eeefef944047b395bafabbe43c7
   }
 
   // 호스트와 설치된 서비스를 전부 초기화한다.
@@ -38,8 +53,11 @@ public:
   {
   }
 
+<<<<<<< HEAD
   short getPort() {return port_++;}
 
+=======
+>>>>>>> c5ef0a0e49537eeefef944047b395bafabbe43c7
   // 링크를 랜덤으로 하나 선택하여 패킷을 전송한다.
   void send(Packet *packet)
   {
@@ -68,4 +86,9 @@ public:
     << ", " << packet->dataString().length() << " bytes)" << std::endl;
   }
 };
+<<<<<<< HEAD
+=======
+
+short Host::port_ = 1000;
+>>>>>>> c5ef0a0e49537eeefef944047b395bafabbe43c7
 #endif

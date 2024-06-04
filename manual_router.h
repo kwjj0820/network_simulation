@@ -8,9 +8,17 @@
 class ManualRouter : public Router {
 
 public:
+<<<<<<< HEAD
   int idx;
   ManualRouter()
   {
+=======
+  RoutingEntry* entry;
+  int idx;
+  ManualRouter()
+  {
+    entry = nullptr;
+>>>>>>> c5ef0a0e49537eeefef944047b395bafabbe43c7
     idx = 0;
   }
 
@@ -21,7 +29,11 @@ public:
   // 목적지 주소에 따른 다음 링크를 설정한다.
   void addRoutingEntry(const Address &destination, Link *nextLink)
   {
+<<<<<<< HEAD
     RoutingEntry* entry = new RoutingEntry(destination, nextLink);
+=======
+    entry = new RoutingEntry(destination, nextLink);
+>>>>>>> c5ef0a0e49537eeefef944047b395bafabbe43c7
     routingTable_.push_back(*entry);
   }
 

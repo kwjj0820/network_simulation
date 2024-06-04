@@ -10,7 +10,11 @@ class Service {
 
   public:
     virtual void doService(Packet* packet) = 0;
+<<<<<<< HEAD
     virtual ~Service() {}
+=======
+
+>>>>>>> c5ef0a0e49537eeefef944047b395bafabbe43c7
     short getPort(){return port_;}
 
   protected:
