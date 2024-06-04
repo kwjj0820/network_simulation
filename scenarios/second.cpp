@@ -74,12 +74,7 @@ int main() {
     }
   }
 
-<<<<<<< HEAD
- /* for (int i = 0; i < COUNT; i++) {
-=======
-/*
   for (int i = 0; i < COUNT; i++) {
->>>>>>> c5ef0a0e49537eeefef944047b395bafabbe43c7
     delete servers[i];
     delete clients[i];
   }
@@ -89,10 +84,5 @@ int main() {
   for (int i = 0; i < COUNT; i++) {
     delete serverLinks[i];
     delete clientLinks[i];
-<<<<<<< HEAD
-  }*/
-=======
   }
-  */
->>>>>>> c5ef0a0e49537eeefef944047b395bafabbe43c7
 }

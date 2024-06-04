@@ -21,10 +21,7 @@ private:
 
 public:
   // 메시지를 전송한다
-<<<<<<< HEAD
   ~MessageService() {}
-=======
->>>>>>> c5ef0a0e49537eeefef944047b395bafabbe43c7
   void send(std::string message)
   {
     Packet* newPacket = new Packet(host_->address(), destAddress_, port_, destPort_, message);

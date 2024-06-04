@@ -11,10 +11,7 @@ class EchoService : public Service {
   friend class EchoServiceInstaller;
 
   public:
-<<<<<<< HEAD
     ~EchoService() {}
-=======
->>>>>>> c5ef0a0e49537eeefef944047b395bafabbe43c7
     void doService(Packet* packet)
     {
       std::cout << "EchoService: received \"" << packet->dataString() << "\" from "\

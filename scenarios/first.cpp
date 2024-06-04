@@ -83,14 +83,8 @@ int main() {
   // --- //
   // 정리 //
   // --- //
-<<<<<<< HEAD
-  // 생성한 객체를 제거한다.
-  /*for (size_t i = 0; i < links.size(); i++) {
-=======
-/*
   // 생성한 객체를 제거한다.
   for (size_t i = 0; i < links.size(); i++) {
->>>>>>> c5ef0a0e49537eeefef944047b395bafabbe43c7
     delete links[i];
   }
 
@@ -99,10 +93,5 @@ int main() {
   }
 
   delete echoServer;
-<<<<<<< HEAD
-  delete messageClient;*/
-=======
   delete messageClient;
-  */
->>>>>>> c5ef0a0e49537eeefef944047b395bafabbe43c7
 }
