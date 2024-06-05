@@ -21,6 +21,8 @@ private:
 
 public:
   ~MessageService() {}
+
+  std::string name() {return "MessageService";}
   // 메시지를 전송한다
   void send(std::string message)
   {

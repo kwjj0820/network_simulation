@@ -12,6 +12,7 @@ class EchoService : public Service {
 
   public:
     ~EchoService() {}
+    std::string name() {return "EchoService";}
     void doService(Packet* packet)
     {
       std::cout << "EchoService: received \"" << packet->dataString() << "\" from "\

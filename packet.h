@@ -4,9 +4,11 @@
 #include "address.h"
 #include <string>
 #include <vector>
+#include "object.h"
 
-class Packet {
+class Packet: Object {
 public:
+  std::string name() {return "Packet";}
   Packet(Address srcAddress, Address destAddress, short srcPort, short destPort,
          std::string data)
       : srcAddress_(srcAddress), destAddress_(destAddress), srcPort_(srcPort),

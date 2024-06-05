@@ -70,5 +70,7 @@ public:
     << packet->srcAddress().toString() << ", to: " << packet->destAddress().toString()
     << ", " << packet->dataString().length() << " bytes)" << std::endl;
   }
+
+  std::string name() {return "Host";}
 };
 #endif
