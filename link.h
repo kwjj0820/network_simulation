@@ -13,12 +13,8 @@ class Link {
 public:
   Node* a() const { return nodeA_;}
   Node* b() const { return nodeB_;}
-
-  ~Link()
-  {
-  }
-  
   void received(Packet* packet, Node* node);
+  ~Link() {}
 
 private:
   Link(Node *nodeA, Node *nodeB) : nodeA_(nodeA), nodeB_(nodeB) {}

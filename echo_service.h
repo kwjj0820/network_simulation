@@ -20,6 +20,7 @@ class EchoService : public Service {
       Packet* echoPacket = new Packet(packet->destAddress(), packet->srcAddress(),\
       packet->destPort(), packet->srcPort(), packet->data());
       host_->send(echoPacket);
+      delete echoPacket;
     }
 
   private:

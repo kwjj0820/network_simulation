@@ -20,12 +20,13 @@ private:
       : Service(host, port), destAddress_(destAddress), destPort_(destPort) {}
 
 public:
-  // 메시지를 전송한다
   ~MessageService() {}
+  // 메시지를 전송한다
   void send(std::string message)
   {
     Packet* newPacket = new Packet(host_->address(), destAddress_, port_, destPort_, message);
     host_->send(newPacket);
+    delete newPacket;
   }
 
   void doService(Packet* packet)

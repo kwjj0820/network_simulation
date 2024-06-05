@@ -30,7 +30,10 @@ public:
 
   ~Host()
   {
-
+    for(auto iter: services_)
+    {
+      delete iter;
+    }
   }
 
   // 호스트와 설치된 서비스를 전부 초기화한다.

@@ -9,6 +9,7 @@ class ManualRouter : public Router {
 
 public:
   int idx;
+  std::vector<RoutingEntry*> entryPtr;
   ManualRouter()
   {
     idx = 0;
@@ -16,12 +17,21 @@ public:
 
   ~ManualRouter()
   {
+    for(auto entry: entryPtr)
+    {
+      delete entry;
+    }
+    for(auto iter: links)
+    {
+      delete iter;
+    }
   }
 
   // 목적지 주소에 따른 다음 링크를 설정한다.
   void addRoutingEntry(const Address &destination, Link *nextLink)
   {
     RoutingEntry* entry = new RoutingEntry(destination, nextLink);
+    entryPtr.push_back(entry);
     routingTable_.push_back(*entry);
   }
 
