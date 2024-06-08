@@ -1,3 +1,5 @@
+#define CHECK_MEMORY_LEAK
+
 #include "../echo_service.h"
 #include "../echo_service_installer.h"
 #include "../host.h"

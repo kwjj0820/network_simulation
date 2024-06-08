@@ -14,6 +14,7 @@ class Link: Object {
 public:
   Node* a() const { return nodeA_;}
   Node* b() const { return nodeB_;}
+  void received_(Packet* packet, Node* node);
   void received(Packet* packet, Node* node);
   ~Link() {}
   double delay() { return delay_; }
@@ -23,6 +24,8 @@ public:
   Node *nodeB() { return nodeB_; }
 
   std::string name() {return "Link";}
+
+  std::string toString() {return Object::toString();}
 
 private:
     Link(Node *nodeA, Node *nodeB, double delay = 0.0)

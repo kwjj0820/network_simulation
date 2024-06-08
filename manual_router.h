@@ -21,10 +21,6 @@ public:
     {
       delete entry;
     }
-    for(auto iter: links)
-    {
-      delete iter;
-    }
   }
 
   std::string name() {return "ManualRouter";}
@@ -37,8 +33,14 @@ public:
     routingTable_.push_back(*entry);
   }
 
-void received(Packet* packet, Node* node)
-{
+  void received_(Packet* packet, Node* node)
+  {
+    Simulator::schedule(Simulator::now(), [this, packet, node]
+    (){this->received(packet, node);});
+  }
+
+  void received(Packet* packet, Node* node)
+  {
     // 패킷의 목적지 주소를 확인하여 라우팅 테이블에 존재하는지 확인합니다.
     bool found = false;
     int size = routingTable_.size();
@@ -55,20 +57,20 @@ void received(Packet* packet, Node* node)
     // 라우팅 테이블에 목적지 주소가 없는 경우 메시지를 출력합니다.
     if (!found)
     {
+      std::cout << this->toString() << "\t";
       std::cout << "Router #" << this->id() << ": no route for packet (from: "
       << packet->srcAddress().toString() << ", to: " << packet->destAddress().toString()
       << ", " << packet->dataString().length() << " bytes)" << std::endl;
     }
     else
     {
-      std::cout << "Router #" << this->id() << ": forwarding packet (from: "
-      << packet->srcAddress().toString() << ", to: " << packet->destAddress().toString()
-      << ", " << packet->dataString().length() << " bytes)" << std::endl;
-      routingTable_[idx].nextLink->received(packet, node);
+      std::cout << this->toString() << "\t";
+      std::cout << "forwarding packet: "
+      << packet->toString() << " to: " <<
+      routingTable_[idx].nextLink->toString() << std::endl;
+      routingTable_[idx].nextLink->received_(packet, node);
     }
-}
-
-
+  }
 };
 
 #endif

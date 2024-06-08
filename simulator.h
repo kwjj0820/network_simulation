@@ -7,6 +7,7 @@
 #include <functional>
 #include <queue>
 #include <vector>
+#include <iostream>
 
 class Simulator;
 
@@ -27,7 +28,7 @@ struct cmp
 {
 	bool operator()(Schedule* a, Schedule* b)
   {
-    return a->time() < b->time();
+    return a->time() > b->time();
   }
 };
 
@@ -36,6 +37,7 @@ private:
   static double time_;
 
 public:
+  static void prepare() { srand(RANDOM_SEED); }
   static double now() { return time_; }
   static std::priority_queue<Schedule*, std::vector<Schedule*>, cmp> schedules;
 
@@ -46,11 +48,20 @@ public:
     schedules.push(s);
   }
 
-  static void run() {
-    srand(RANDOM_SEED);
-
+  static void run()
+  {
     // 모든 스케줄을 실행한다.
     // TODO: 구현
+    while (!schedules.empty())
+    {
+      Schedule* s = schedules.top();
+      schedules.pop();
+      time_ = s->time();
+      std::cout.precision(2);
+      std::cout << time_ << "s\t";
+      s->call();
+      delete s;
+    }
   }
 };
 

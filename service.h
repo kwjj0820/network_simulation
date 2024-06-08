@@ -11,8 +11,10 @@ class Service: Object{
 
   public:
     virtual void doService(Packet* packet) = 0;
+    virtual void doService_(Packet* packet) = 0;
     virtual ~Service() {}
     short getPort(){return port_;}
+    std::string toString() {return Object::toString();}
 
   protected:
 

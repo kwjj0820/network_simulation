@@ -33,8 +33,14 @@ public:
 
   void doService(Packet* packet)
   {
-    std::cout << "MessageService: received \"" << packet->dataString() <<\
-    "\" from " << packet->srcAddress().toString() << ":" << packet->srcPort() << std::endl;
+    std::cout << this->toString() << "\treceived " << packet->dataString() <<
+    "from " << packet->srcAddress().toString() << ":" << packet->srcPort() << std::endl;
+  }
+
+  void doService_(Packet* packet)
+  {
+    Simulator::schedule(Simulator::now(), [this, packet]
+    (){this->doService(packet);});
   }
 };
 

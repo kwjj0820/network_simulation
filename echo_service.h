@@ -13,14 +13,20 @@ class EchoService : public Service {
   public:
     ~EchoService() {}
     std::string name() {return "EchoService";}
+    void doService_(Packet* packet)
+    {
+      Simulator::schedule(Simulator::now(), [this, packet]
+      (){this->doService(packet);});
+    }
+
     void doService(Packet* packet)
     {
-      std::cout << "EchoService: received \"" << packet->dataString() << "\" from "\
-      << packet->srcAddress().toString() << ":" << packet->srcPort() <<\
-      ", send reply with same data" << std::endl;
+      std::cout << this->toString() << "\t" << "received " <<
+      packet->dataString() << "from " << packet->srcAddress().toString() <<
+      ":" << packet->srcPort() << ", send reply with same data" << std::endl;
       Packet* echoPacket = new Packet(packet->destAddress(), packet->srcAddress(),\
       packet->destPort(), packet->srcPort(), packet->data());
-      host_->send(echoPacket);
+      host_->send_(echoPacket);
       delete echoPacket;
     }
 
