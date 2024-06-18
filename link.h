@@ -2,7 +2,6 @@
 #define LINK_H
 
 #include "packet.h"
-#include <cstdlib>
 #include <iostream>
 #include "object.h"
 
@@ -12,24 +11,23 @@ class Link: Object {
   friend class LinkInstaller;
 
 public:
-  Node* a() const { return nodeA_;}
-  Node* b() const { return nodeB_;}
+  Node* a() const { return nodeA_; }
+  Node* b() const { return nodeB_; }
   void received_(Packet* packet, Node* node);
   void received(Packet* packet, Node* node);
+  void send(Packet* packet, Node* node);
+  void send_(Packet* packet, Node* node);
   ~Link() {}
   double delay() { return delay_; }
 
   Node *nodeA() { return nodeA_; }
-
   Node *nodeB() { return nodeB_; }
-
-  std::string name() {return "Link";}
-
-  std::string toString() {return Object::toString();}
+  std::string name() { return "Link"; }
+  std::string toString() { return Object::toString(); }
 
 private:
-    Link(Node *nodeA, Node *nodeB, double delay = 0.0)
-      : nodeA_(nodeA), nodeB_(nodeB), delay_(delay) {}
+  Link(Node *nodeA, Node *nodeB, double delay = 0.0)
+    : nodeA_(nodeA), nodeB_(nodeB), delay_(delay) {}
 
   Node *nodeA_;
   Node *nodeB_;

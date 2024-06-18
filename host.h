@@ -76,16 +76,16 @@ public:
       if(services_[i]->getPort() == packet->destPort())
       {
         std::cout << this->toString() << "\t\t"
-        << "receivce packet:" << packet->toString()
-        << ", forwarding to" << services_[i]->toString()
+        << "received packet: " << packet->toString()
+        << ", forwarding to " << services_[i]->toString()
         << std::endl;
         services_[i]->doService_(packet);
         return;
       }
     }
-    std::cout << "Host #" << this->id() << ": no service for packet (from: "
-    << packet->srcAddress().toString() << ", to: " << packet->destAddress().toString()
-    << ", " << packet->dataString().length() << " bytes)" << std::endl;
+    std::cout << this->toString() << " no service for packet: " <<
+    packet->toString() << std::endl;
+    delete packet;
   }
 };
 #endif

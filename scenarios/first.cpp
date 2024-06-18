@@ -11,6 +11,8 @@
 #define ECHO_PORT 3000
 
 int main() {
+  Simulator::prepare();
+
   // ---------- //
   // 토폴로지 설정 //
   // ---------- //
@@ -90,6 +92,7 @@ int main() {
   // --- //
   // 정리 //
   // --- //
+
   // 생성한 객체를 제거한다.
   for (size_t i = 0; i < links.size(); i++) {
     delete links[i];

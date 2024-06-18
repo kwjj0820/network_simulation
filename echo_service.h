@@ -16,18 +16,18 @@ class EchoService : public Service {
     void doService_(Packet* packet)
     {
       Simulator::schedule(Simulator::now(), [this, packet]
-      (){this->doService(packet);});
+      (){this->doService(packet);
+      delete packet;});
     }
 
     void doService(Packet* packet)
     {
-      std::cout << this->toString() << "\t" << "received " <<
-      packet->dataString() << "from " << packet->srcAddress().toString() <<
+      std::cout << this->toString() << "\t" << "received \"" <<
+      packet->dataString() << "\" from " << packet->srcAddress().toString() <<
       ":" << packet->srcPort() << ", send reply with same data" << std::endl;
       Packet* echoPacket = new Packet(packet->destAddress(), packet->srcAddress(),\
       packet->destPort(), packet->srcPort(), packet->data());
       host_->send_(echoPacket);
-      delete echoPacket;
     }
 
   private:

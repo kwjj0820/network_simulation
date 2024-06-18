@@ -28,19 +28,19 @@ public:
   {
     Packet* newPacket = new Packet(host_->address(), destAddress_, port_, destPort_, message);
     host_->send(newPacket);
-    delete newPacket;
   }
 
   void doService(Packet* packet)
   {
-    std::cout << this->toString() << "\treceived " << packet->dataString() <<
-    "from " << packet->srcAddress().toString() << ":" << packet->srcPort() << std::endl;
+    std::cout << this->toString() << "\treceived \"" << packet->dataString() <<
+    "\" from " << packet->srcAddress().toString() << ":" << packet->srcPort() << std::endl;
   }
 
   void doService_(Packet* packet)
   {
     Simulator::schedule(Simulator::now(), [this, packet]
-    (){this->doService(packet);});
+    (){this->doService(packet);
+    delete packet;});
   }
 };
 

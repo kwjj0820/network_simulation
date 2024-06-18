@@ -5,8 +5,18 @@
 #include <string>
 
 class PacketSinkService : public Service {
+public:
+  std::string name() {return "PacketSinkService";}
+
+  void doService(Packet* packet)
+  {
+    totalBytes += packet->data().size();
+  }
+
 private:
-  PacketSinkService(Host *host, short port);
+  int totalBytes;
+  PacketSinkService(Host *host, short port)
+  : Service(host, port), totalBytes(0) {};
 };
 
 #endif

@@ -17,6 +17,8 @@
 #define CLIENT_ADDRESS_START 456
 
 int main() {
+  Simulator::prepare();
+
   std::vector<Host *> servers;
   std::vector<Host *> clients;
 
@@ -73,9 +75,9 @@ int main() {
   for (int x = 0; x < 3; x++) {
     for (size_t i = 0; i < messageServices.size(); i++) {
       Simulator::schedule(
-      x * messageServices.size() + i, [i, x, messageServices]() -> void {
-      messageServices[i]->send("Hello " + std::to_string(x));
-      });
+          x * messageServices.size() + i, [i, x, messageServices]() -> void {
+            messageServices[i]->send("Hello " + std::to_string(x));
+          });
     }
   }
 
